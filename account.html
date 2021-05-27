@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!DOCTYPE html>
+  <html>
+  	<head>
+  		<title>BankOnline</title>
+
+  		<meta charset="utf-8" />
+  		<link href="todo.css" type="text/css" rel="stylesheet" />
+  		</head>
+
+  	<body>
+  		<header>
+        <a href="index.php">
+  			<img src="logo.png" alt="banner logo" height=30% width=30%/> <br />
+        <a>
+          <br>
+  		</header>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+<form action="http://localhost/Project6/account-submit.php" method="post">
+<link rel="stylesheet" href="project6.css">
+  <fieldset>
+  <legend>
+    New Account
+  </legend>
+  <div class="column">
+	Name:
+	</div>
+		<input type="text" name="name" pattern="[A-Za-z]+" required/>
+		</br><br>
+    <div class="column">
+  	Birthday:
+  	</div>
+  		<input type="date" name="birth" required/>
+  		</br><br>
+      <div class="column">
+      Email:
+      </div>
+        <input type="email" name="email" required/>
+        </br><br>
+        <div class="column">
+        Phone Number:
+        </div>
+          <input type="text" name="phone" pattern="\d{10}" required/>
+          </br><br>
+      <div class="column">
+    	Residence:
+    	</div>
+      <div ng-app="myApp" ng-controller = "customersCtrl">
+        <select name="country">
+          <option ng-repeat = "x in names">
+            {{x.country}}
+            </option>
+        </select>
+        </div>
+      <script>
+        var app = angular.module('myApp', []);
+        app.controller('customersCtrl', function($scope, $http)
+        {
+          $http.get("sqlcountry.php")
+          .then(function(response) {$scope.names = response.data.records;});
+        });
+      </script>
+    </br>
+      <div class="column">
+        Type:
+      	</div>
+      	<input type="radio" name="acctype" value="checking" required/> Checkings
+      	<input type="radio" name="acctype" value="Savings" required/> Savings
+        </br><br>
+        <div class="column">
+      	Deposit ($):
+      	</div>
+      		<input type="number" name="amount" required/>
+      		</br><br>
+          <input type="submit" value="Sign Up!">
+          </fieldset>
+        </form>
+</body>
